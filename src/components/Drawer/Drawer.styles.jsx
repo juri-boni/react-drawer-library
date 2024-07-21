@@ -35,6 +35,7 @@ export const DrawerContent = styled.div`
 
 export const MenuButton = styled.button`
   position: absolute;
+  color: ${(props) => props.theme.colors.drawer.menuButton};
   top: 1rem;
   background: none;
   border: none;
@@ -67,6 +68,7 @@ export const SwitchButtonContainer = styled.button`
   background: none;
   border: none;
   cursor: pointer;
+  color: ${(props) => props.theme.colors.drawer.switchButton};
   transition:
     transform 0.3s ease,
     color 0.3s ease;
