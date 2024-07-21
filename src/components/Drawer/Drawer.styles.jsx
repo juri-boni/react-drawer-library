@@ -4,7 +4,9 @@ export const DrawerWrapper = styled.div`
   position: fixed;
   width: ${(props) => props.width || "30rem"};
   height: 100%;
-  background-color: #cc6d77;
+  background-color: ${(props) =>
+    props.theme.colors.drawer
+      .background}; // Use the background color from the theme
   transition: transform 0.4s ease;
   z-index: 1000;
 
@@ -27,17 +29,9 @@ export const DrawerContent = styled.div`
   padding: 1.6rem;
   height: 100%;
   overflow-y: auto;
+  color: ${(props) =>
+    props.theme.colors.drawer.content}; // Use the content color from the theme
 `;
-
-// export const CloseButton = styled.button`
-//   position: absolute;
-//   top: 1rem;
-//   right: 1rem;
-//   background: none;
-//   border: none;
-//   font-size: 2.4rem;
-//   cursor: pointer;
-// `;
 
 export const MenuButton = styled.button`
   position: absolute;
@@ -46,12 +40,49 @@ export const MenuButton = styled.button`
   border: none;
   font-size: 2.4rem;
   cursor: pointer;
+  transition:
+    transform 0.3s ease,
+    color 0.3s ease;
 
   &.right {
-    left: 1rem; /* Position the button on the left side when the drawer is on the right */
+    left: 1rem;
   }
 
   &.left {
-    right: 1rem; /* Position the button on the right side when the drawer is on the left */
+    right: 1rem;
+  }
+
+  &:hover {
+    transform: scale(1.1);
+    color: ${(props) =>
+      props.theme.colors.drawer
+        .menuButtonHover}; // Use the hover color from the theme
+  }
+`;
+
+export const SwitchButtonContainer = styled.button`
+  position: absolute;
+  bottom: 1rem;
+  font-size: 4rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition:
+    transform 0.3s ease,
+    color 0.3s ease;
+
+  &.right {
+    left: 1rem;
+  }
+
+  &.left {
+    right: 1rem;
+  }
+
+  &:hover {
+    transform: scale(1.1);
+    color: ${(props) =>
+      props.theme.colors.drawer
+        .switchButtonHover}; // Use the hover color from the theme
   }
 `;

@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { AppContainer, Button } from "./App.styles";
 import Drawer from "./components/Drawer/Drawer.component";
+import { ThemeProvider } from "styled-components";
+import { theme, lightTheme, darkTheme } from "./theme";
 
 function App() {
   const [isOpen, setIsOpen] = useState(true);
   const [position, setPosition] = useState("right");
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [hidden, setHidden] = useState(false);
+  const [currentTheme, setCurrentTheme] = useState("dark");
 
   const toggleDrawer = () => {
     console.log("toggleDrawer called. isTransitioning:", isTransitioning);
@@ -21,6 +24,10 @@ function App() {
       setIsTransitioning(true);
       setIsOpen(false);
     }
+  };
+
+  const toggleTheme = () => {
+    setCurrentTheme(currentTheme === "dark" ? "light" : "dark"); // Toggle theme
   };
 
   useEffect(() => {
@@ -66,19 +73,30 @@ function App() {
   }, [isOpen, isTransitioning]);
 
   return (
-    <AppContainer>
-      {/* <h1>APP CONTAINER</h1> */}
-      {/* <Button onClick={toggleDrawer}>Toggle Drawer</Button> */}
-      {!hidden && (
-        <Drawer isOpen={isOpen} toggleDrawer={toggleDrawer} position={position}>
-          <div>
-            <h1>{`This is a ${position} Drawer`}</h1>
-            <p>{`This is a ${position} Drawer`}</p>
-          </div>
-          <Button onClick={togglePosition}>Toggle Position</Button>
-        </Drawer>
-      )}
-    </AppContainer>
+    <>
+      <ThemeProvider theme={currentTheme === "dark" ? darkTheme : lightTheme}>
+        <AppContainer>
+          <button onClick={toggleTheme}>Toggle Theme</button>
+          {/* <h1>APP CONTAINER</h1> */}
+          {/* <Button onClick={toggleDrawer}>Toggle Drawer</Button> */}
+          {!hidden && (
+            <Drawer
+              isOpen={isOpen}
+              toggleDrawer={toggleDrawer}
+              togglePosition={togglePosition}
+              position={position}
+              drawerTheme={currentTheme}
+            >
+              <div>
+                <h1>{`This is a ${position} Drawer`}</h1>
+                <p>{`This is a ${position} Drawer`}</p>
+              </div>
+              {/* <Button onClick={togglePosition}>Toggle Position</Button> */}
+            </Drawer>
+          )}
+        </AppContainer>
+      </ThemeProvider>
+    </>
   );
 }
 
