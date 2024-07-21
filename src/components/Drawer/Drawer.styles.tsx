@@ -1,6 +1,29 @@
 import styled from "styled-components";
 
-export const DrawerWrapper = styled.div`
+interface DrawerWrapperProps {
+  isOpen: boolean;
+  width: string;
+  transitionDuration: string;
+  theme: {
+    colors: {
+      drawer: {
+        background: string;
+        content: string;
+        menuButton: string;
+        menuButtonHover: string;
+        switchButton: string;
+        switchButtonHover: string;
+      };
+    };
+  };
+}
+
+interface ButtonProps {
+  className: string;
+  color?: string;
+}
+
+export const DrawerWrapper = styled.div<DrawerWrapperProps>`
   position: fixed;
   width: ${(props) => props.width || "30rem"};
   height: 100%;
@@ -33,7 +56,7 @@ export const DrawerContent = styled.div`
     props.theme.colors.drawer.content}; // Use the content color from the theme
 `;
 
-export const MenuButton = styled.button`
+export const MenuButton = styled.button<ButtonProps>`
   position: absolute;
   color: ${(props) => props.theme.colors.drawer.menuButton};
   top: 1rem;
@@ -61,7 +84,7 @@ export const MenuButton = styled.button`
   }
 `;
 
-export const SwitchButtonContainer = styled.button`
+export const SwitchButtonContainer = styled.button<ButtonProps>`
   position: absolute;
   bottom: 1rem;
   font-size: 4rem;

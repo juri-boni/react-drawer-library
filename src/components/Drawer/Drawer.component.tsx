@@ -10,7 +10,17 @@ import MenuRoundedIcon from "@mui/icons-material/MenuRounded";
 // import SwitchRightRoundedIcon from "@mui/icons-material/SwitchRightRounded";
 import SwapHorizIcon from "@mui/icons-material/SwapHoriz";
 
-const Drawer = ({
+interface DrawerProps {
+  isOpen: boolean;
+  toggleDrawer: () => void;
+  togglePosition: () => void;
+  position?: "left" | "right";
+  width?: string;
+  children: React.ReactNode;
+  drawerTheme: string;
+}
+
+const Drawer: React.FC<DrawerProps> = ({
   isOpen,
   toggleDrawer,
   togglePosition,
