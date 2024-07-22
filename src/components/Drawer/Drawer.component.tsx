@@ -6,8 +6,6 @@ import {
   SwitchButtonContainer,
 } from "./Drawer.styles";
 import MenuRoundedIcon from "@mui/icons-material/MenuRounded";
-// import SwitchLeftRoundedIcon from "@mui/icons-material/SwitchLeftRounded";
-// import SwitchRightRoundedIcon from "@mui/icons-material/SwitchRightRounded";
 import SwapHorizIcon from "@mui/icons-material/SwapHoriz";
 
 interface DrawerProps {
@@ -20,7 +18,7 @@ interface DrawerProps {
   drawerTheme: string;
 }
 
-const Drawer: React.FC<DrawerProps> = ({
+const Drawer = ({
   isOpen,
   toggleDrawer,
   togglePosition,
@@ -28,7 +26,7 @@ const Drawer: React.FC<DrawerProps> = ({
   width = "18rem",
   children,
   drawerTheme,
-}) => {
+}: DrawerProps) => {
   return (
     <DrawerWrapper
       isOpen={isOpen}
@@ -43,11 +41,6 @@ const Drawer: React.FC<DrawerProps> = ({
         {children}
       </DrawerContent>
       <SwitchButtonContainer onClick={togglePosition} className={position}>
-        {/* {position === "left" ? (
-          <SwitchRightRoundedIcon sx={{ fontSize: 40 }} />
-        ) : (
-          <SwitchLeftRoundedIcon sx={{ fontSize: 40 }} />
-        )} */}
         <SwapHorizIcon sx={{ fontSize: 40 }} />
       </SwitchButtonContainer>
     </DrawerWrapper>

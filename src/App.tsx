@@ -36,7 +36,9 @@ const App: React.FC = () => {
     if (!isOpen && isTransitioning) {
       timer = setTimeout(() => {
         setHidden(true);
-        setPosition((prevPosition) => (prevPosition === "right" ? "left" : "right"));
+        setPosition((prevPosition) =>
+          prevPosition === "right" ? "left" : "right"
+        );
       }, 400);
 
       const reopenTimer = setTimeout(() => {
@@ -77,6 +79,6 @@ const App: React.FC = () => {
       </AppContainer>
     </ThemeProvider>
   );
-}
+};
 
 export default App;
